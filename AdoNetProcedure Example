@@ -1,0 +1,59 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace AdoNetExampleProcedure
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+       
+        public SqlConnection baglanti = new SqlConnection("server=bitmezler\\SQLEXPRESS;database=NORTHWND;uid=sa;pwd=1234");
+
+        private void KategoriListesi()
+        {
+            SqlDataAdapter dtp = new SqlDataAdapter("prcKategoriListele", baglanti);
+            dtp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dt = new DataTable();
+            dtp.Fill(dt);
+            dataGridView1.DataSource = dt;
+            dtp.Dispose();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            KategoriListesi();
+        }
+
+        private void butonEkle_Click(object sender, EventArgs e)
+        {
+            
+            SqlCommand cmd = new SqlCommand("prcKategoriEkle", baglanti);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@adi", textAd.Text);
+            cmd.Parameters.AddWithValue("@tanim", textTanim.Text);
+
+            baglanti.Open();
+            int etkilenen = cmd.ExecuteNonQuery();
+
+            if (etkilenen > 0)
+            {
+                MessageBox.Show("Başarılı");
+                KategoriListesi();
+            }
+            else
+            { MessageBox.Show("Hata"); }
+
+            baglanti.Close();
+        }
+    }
+}
