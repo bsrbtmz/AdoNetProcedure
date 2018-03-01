@@ -12,7 +12,7 @@ namespace AdoNetExampleProcedure
             InitializeComponent();
         }
 
-        public SqlConnection baglanti = new SqlConnection("server=.;database=NORTHWND;uid=sa;pwd=pass");
+        public SqlConnection baglanti = new SqlConnection("server=.;database=NORTHWND;Trusted_Connection=true");
 
         private void KategoriListesi()
         {
