@@ -12,11 +12,6 @@ namespace AdoNetExampleProcedure
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-       
         public SqlConnection baglanti = new SqlConnection("server=.;database=NORTHWND;uid=sa;pwd=pass");
 
         private void KategoriListesi()
