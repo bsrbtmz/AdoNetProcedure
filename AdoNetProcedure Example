@@ -17,7 +17,7 @@ namespace AdoNetExampleProcedure
 
         }
        
-        public SqlConnection baglanti = new SqlConnection("server=bitmezler\\SQLEXPRESS;database=NORTHWND;uid=sa;pwd=1234");
+        public SqlConnection baglanti = new SqlConnection("server=.;database=NORTHWND;uid=sa;pwd=pass");
 
         private void KategoriListesi()
         {
